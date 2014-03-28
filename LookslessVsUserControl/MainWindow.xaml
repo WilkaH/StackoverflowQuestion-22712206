@@ -1,0 +1,47 @@
+﻿<Window x:Class="LookslessVsUserControl.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:LookslessVsUserControl="clr-namespace:LookslessVsUserControl"
+        Title="The window title" 
+        Height="350" 
+        Width="650"
+        Background="LightBlue"
+        >
+    <StackPanel>
+      <StackPanel.Resources>
+        <Style x:Key="sectionHeader" TargetType="TextBlock">
+          <Setter Property="Margin" Value="0,10,0,0"/>
+          <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+      </StackPanel.Resources>
+      
+      <StackPanel Orientation="Horizontal">
+        <TextBlock>Text box for binding target: </TextBlock>
+        <TextBox x:Name="textBox" Width="300">Default text for binding target</TextBox>
+      </StackPanel>
+
+      <TextBlock Style="{StaticResource sectionHeader}">Using a control with a code-behind  containing a text block</TextBlock>
+      <LookslessVsUserControl:MrWhiteWithCodeBehind>
+        <LookslessVsUserControl:MrWhiteWithCodeBehind.MyContent>
+          <TextBlock>A text block inside of it</TextBlock>
+        </LookslessVsUserControl:MrWhiteWithCodeBehind.MyContent> 
+      </LookslessVsUserControl:MrWhiteWithCodeBehind>
+
+      <TextBlock Style="{StaticResource sectionHeader}">Using a control with a code-behind  containing a text block with an ElementName binding:</TextBlock>
+      <LookslessVsUserControl:MrWhiteWithCodeBehind>
+        <LookslessVsUserControl:MrWhiteWithCodeBehind.MyContent>
+          <TextBlock Text="{Binding ElementName=textBox, Path=Text}"></TextBlock>
+        </LookslessVsUserControl:MrWhiteWithCodeBehind.MyContent>
+      </LookslessVsUserControl:MrWhiteWithCodeBehind>
+
+      <TextBlock Style="{StaticResource sectionHeader}">Using a lookless control (with no code behind) containing a text block</TextBlock>
+      <LookslessVsUserControl:MrWhiteCustomControl>
+        <TextBlock>A text block inside of it</TextBlock>
+      </LookslessVsUserControl:MrWhiteCustomControl>
+
+      <TextBlock Style="{StaticResource sectionHeader}">Using a lookless control (with no code behind) containing a text block with an ElementName binding:</TextBlock>
+      <LookslessVsUserControl:MrWhiteCustomControl>
+        <TextBlock Text="{Binding ElementName=textBox, Path=Text}"></TextBlock>
+      </LookslessVsUserControl:MrWhiteCustomControl>
+    </StackPanel>
+</Window>
